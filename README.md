@@ -7,12 +7,12 @@ Este projeto foi desenvolvido para fins de estudo e prática de desenvolvimento 
 ## 🚀 Como acessar
 
 Você pode acessar a versão online e funcional do projeto através do link abaixo:
-**[Acessar EducaTech]([https://lopesbl.github.io/projeto_sistema_escolar/sistema_acompanhamento_escolar/]
+**[Acessar EducaTech](INSERIR SEU LINK DO GITHUB PAGES AQUI)**
 
 ## 🛠️ Tecnologias Utilizadas
 
-* **HTML:** Estruturação semântica da aplicação.
-* **CSS:** Estilização, layout (Flexbox/Grid) e responsividade.
+* **HTML5:** Estruturação semântica da aplicação.
+* **CSS3:** Estilização, layout (Flexbox/Grid) e responsividade.
 * **JavaScript:** Lógica de interface e manipulação do DOM.
 
 ## ✨ Funcionalidades
