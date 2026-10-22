@@ -7,7 +7,7 @@ Este projeto foi desenvolvido para fins de estudo e prática de desenvolvimento 
 ## 🚀 Como acessar
 
 Você pode acessar a versão online e funcional do projeto através do link abaixo:
-**[Acessar EducaTech](INSERIR SEU LINK DO GITHUB PAGES AQUI)**
+**[Acessar EducaTech]([https://lopesbl.github.io/projeto_sistema_escolar/](https://lopesbl.github.io/projeto_sistema_escolar/))**
 
 ## 🛠️ Tecnologias Utilizadas
 
