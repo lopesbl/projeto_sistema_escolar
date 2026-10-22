@@ -1,1 +1,220 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EducaTech - Acompanhamento Escolar</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- MENU LATERAL: identidade visual e botões usados para trocar de seção. -->
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="brand-icon">🎓</div>
+      <div>
+        <strong>EducaTech</strong>
+        <span>Acompanhamento Escolar</span>
+      </div>
+    </div>
+
+    <!-- Navegação: cada data-section aponta para o id da seção que será exibida. -->
+    <nav>
+      <button class="nav-item active" data-section="inicio">🏠 <span>Início</span></button>
+      <button class="nav-item" data-section="alunos">👨‍🎓 <span>Alunos</span></button>
+      <button class="nav-item" data-section="materias">📚 <span>Matérias</span></button>
+      <button class="nav-item" data-section="frequencia">📅 <span>Frequência</span></button>
+      <button class="nav-item" data-section="professores">👩‍🏫 <span>Professores</span></button>
+      <button class="nav-item" data-section="atividades">📝 <span>Atividades e Trabalhos</span></button>
+      <button class="nav-item" data-section="desempenho">📊 <span>Desempenho</span></button>
+    </nav>
+
+    <div class="sidebar-footer">
+      <span>2026 • EducaTech</span>
+    </div>
+  </aside>
+
+  <!-- ÁREA PRINCIPAL: contém o cabeçalho e todas as telas do sistema. -->
+  <main class="main">
+    <!-- Cabeçalho superior: título/subtítulo da tela atual e usuário conectado (visual). -->
+    <header class="topbar">
+      <div>
+        <h1 id="page-title">Dashboard</h1>
+        <p id="page-subtitle">Visão geral do acompanhamento escolar</p>
+      </div>
+      <div class="user-box">👤 Administrador</div>
+    </header>
+
+    <!-- INÍCIO / DASHBOARD: cartões de indicadores, médias, atividades e alunos em atenção. -->
+    <section id="inicio" class="section active">
+      <div class="cards">
+        <div class="stat-card"><span>👨‍🎓</span><div><small>Total de alunos</small><strong id="totalAlunos">0</strong></div></div>
+        <div class="stat-card"><span>👩‍🏫</span><div><small>Professores</small><strong id="totalProfessores">0</strong></div></div>
+        <div class="stat-card"><span>📚</span><div><small>Matérias</small><strong id="totalMaterias">0</strong></div></div>
+        <div class="stat-card"><span>📝</span><div><small>Atividades pendentes</small><strong id="totalPendentes">0</strong></div></div>
+      </div>
+
+      <div class="grid-2">
+        <div class="panel">
+          <div class="panel-title"><h2>Resumo de desempenho</h2></div>
+          <div class="progress-row"><span>Média geral</span><strong id="mediaGeral">0,0</strong></div>
+          <div class="progress"><div id="mediaProgress" style="width:0%"></div></div>
+          <div class="progress-row"><span>Frequência média</span><strong id="freqGeral">0%</strong></div>
+          <div class="progress"><div id="freqProgress" style="width:0%"></div></div>
+        </div>
+        <div class="panel">
+          <div class="panel-title"><h2>Próximas atividades</h2></div>
+          <div id="homeAtividades" class="mini-list"></div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-title"><h2>Alunos em atenção</h2><span class="badge danger">Acompanhamento</span></div>
+        <div id="alunosAtencao" class="attention-list"></div>
+      </div>
+    </section>
+
+    <!-- ALUNOS: pesquisa, tabela de alunos e botão para abrir o formulário de cadastro. -->
+    <section id="alunos" class="section">
+      <div class="section-header">
+        <div><h2>Cadastro de Alunos</h2><p>Cadastre e consulte informações dos alunos.</p></div>
+        <button class="primary" onclick="openModal('alunoModal')">+ Novo aluno</button>
+      </div>
+      <div class="toolbar"><input id="buscaAluno" placeholder="🔎 Buscar aluno por nome ou matrícula..." oninput="renderAlunos()"></div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Nome</th><th>Matrícula</th><th>E-mail</th><th>Telefone</th><th>Notas</th><th>Ações</th></tr></thead>
+          <tbody id="alunosTable"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- MATÉRIAS: área de visualização e cadastro de disciplinas. -->
+    <section id="materias" class="section">
+      <div class="section-header">
+        <div><h2>Matérias</h2><p>Disciplinas oferecidas pela escola.</p></div>
+        <button class="primary" onclick="openModal('materiaModal')">+ Nova matéria</button>
+      </div>
+      <div id="materiasGrid" class="subject-grid"></div>
+    </section>
+
+    <!-- FREQUÊNCIA: filtros e tabela de presenças/faltas por matéria. -->
+    <section id="frequencia" class="section">
+      <div class="section-header">
+        <div><h2>Frequência</h2><p>Acompanhe a presença dos alunos por disciplina.</p></div>
+      </div>
+      <div class="toolbar">
+        <select id="freqMateria" onchange="renderFrequencia()"></select>
+        <input id="freqBusca" placeholder="🔎 Buscar aluno..." oninput="renderFrequencia()">
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Aluno</th><th>Presenças</th><th>Faltas</th><th>Frequência</th><th>Status</th><th>Ação</th></tr></thead>
+          <tbody id="frequenciaTable"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- PROFESSORES: cadastro e listagem dos professores. -->
+    <section id="professores" class="section">
+      <div class="section-header">
+        <div><h2>Professores</h2><p>Dados de professores, disciplinas, turmas e horários.</p></div>
+        <button class="primary" onclick="openModal('professorModal')">+ Novo professor</button>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Nome</th><th>Disciplina</th><th>E-mail</th><th>Turmas</th><th>Horário de aula</th><th>Ações</th></tr></thead>
+          <tbody id="professoresTable"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ATIVIDADES: tarefas/trabalhos e seus estados de conclusão. -->
+    <section id="atividades" class="section">
+      <div class="section-header">
+        <div><h2>Atividades e Trabalhos</h2><p>Controle de tarefas, trabalhos e prazos de entrega.</p></div>
+        <button class="primary" onclick="openModal('atividadeModal')">+ Nova atividade</button>
+      </div>
+      <div class="cards compact">
+        <div class="stat-card"><span>📌</span><div><small>Total</small><strong id="ativTotal">0</strong></div></div>
+        <div class="stat-card"><span>⏳</span><div><small>Pendentes</small><strong id="ativPendentes">0</strong></div></div>
+        <div class="stat-card"><span>✅</span><div><small>Entregues</small><strong id="ativEntregues">0</strong></div></div>
+      </div>
+      <div class="activity-grid" id="atividadesGrid"></div>
+    </section>
+
+    <!-- DESEMPENHO: consulta de indicadores e notas por aluno. -->
+    <section id="desempenho" class="section">
+      <div class="section-header">
+        <div><h2>Desempenho do Aluno</h2><p>Consulte notas, médias, frequência e situação acadêmica.</p></div>
+      </div>
+      <div class="toolbar"><select id="alunoDesempenho" onchange="renderDesempenho()"></select></div>
+      <div id="desempenhoContent"></div>
+    </section>
+  </main>
+
+  <!-- Modal aluno -->
+  <div class="modal" id="alunoModal">
+    <div class="modal-content">
+      <button class="close" onclick="closeModal('alunoModal')">×</button>
+      <h2>Cadastrar aluno</h2>
+      <form id="alunoForm">
+        <label>Nome<input name="nome" required></label>
+        <label>Matrícula<input name="matricula" required></label>
+        <label>E-mail<input name="email" type="email" required></label>
+        <label>Telefone<input name="telefone" required></label>
+        <div class="form-actions"><button type="button" class="secondary" onclick="closeModal('alunoModal')">Cancelar</button><button class="primary">Salvar aluno</button></div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal matéria -->
+  <div class="modal" id="materiaModal">
+    <div class="modal-content">
+      <button class="close" onclick="closeModal('materiaModal')">×</button>
+      <h2>Cadastrar matéria</h2>
+      <form id="materiaForm">
+        <label>Nome da disciplina<input name="nome" required></label>
+        <label>Carga horária<input name="carga" type="number" min="1" required></label>
+        <label>Turma<input name="turma" required placeholder="Ex.: 2º A"></label>
+        <div class="form-actions"><button type="button" class="secondary" onclick="closeModal('materiaModal')">Cancelar</button><button class="primary">Salvar matéria</button></div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal professor -->
+  <div class="modal" id="professorModal">
+    <div class="modal-content">
+      <button class="close" onclick="closeModal('professorModal')">×</button>
+      <h2>Cadastrar professor</h2>
+      <form id="professorForm">
+        <label>Nome<input name="nome" required></label>
+        <label>Disciplina<select name="disciplina" id="profDisciplina" required></select></label>
+        <label>E-mail<input name="email" type="email" required></label>
+        <label>Turmas<input name="turmas" required placeholder="Ex.: 1º A, 2º B"></label>
+        <label>Horário de aula<input name="horario" required placeholder="Seg e Qua • 08:00–10:00"></label>
+        <div class="form-actions"><button type="button" class="secondary" onclick="closeModal('professorModal')">Cancelar</button><button class="primary">Salvar professor</button></div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal atividade -->
+  <div class="modal" id="atividadeModal">
+    <div class="modal-content">
+      <button class="close" onclick="closeModal('atividadeModal')">×</button>
+      <h2>Cadastrar atividade</h2>
+      <form id="atividadeForm">
+        <label>Título<input name="titulo" required></label>
+        <label>Disciplina<select name="disciplina" id="ativDisciplina" required></select></label>
+        <label>Tipo<select name="tipo"><option>Trabalho</option><option>Lista de exercícios</option><option>Projeto</option><option>Prova</option></select></label>
+        <label>Data de entrega<input name="data" type="date" required></label>
+        <label>Descrição<textarea name="descricao" rows="3"></textarea></label>
+        <div class="form-actions"><button type="button" class="secondary" onclick="closeModal('atividadeModal')">Cancelar</button><button class="primary">Salvar atividade</button></div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Carrega a lógica JavaScript depois da estrutura HTML. -->
+  <script src="script.js"></script>
+</body>
+</html>
 
