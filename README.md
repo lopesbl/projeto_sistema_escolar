@@ -22,10 +22,3 @@ Você pode acessar a versão online e funcional do projeto através do link abai
 * **Controle de Frequência:** Tabela dinâmica para acompanhamento de presenças e faltas por matéria.
 * **Atividades e Trabalhos:** Controle de tarefas, status de entrega e prazos.
 * **Design Responsivo:** Interface adaptada para uso em diferentes tamanhos de tela.
-
-## ⚙️ Como rodar localmente
-
-1. Faça o clone deste repositório:
-   `git clone https://github.com/seu-usuario/sistema_acompanhamento_escolar.git`
-2. Abra a pasta do projeto no VS Code.
-3. Inicie o projeto utilizando a extensão **Live Server**.
