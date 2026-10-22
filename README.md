@@ -11,8 +11,8 @@ Você pode acessar a versão online e funcional do projeto através do link abai
 
 ## 🛠️ Tecnologias Utilizadas
 
-* **HTML5:** Estruturação semântica da aplicação.
-* **CSS3:** Estilização, layout (Flexbox/Grid) e responsividade.
+* **HTML:** Estruturação semântica da aplicação.
+* **CSS:** Estilização, layout (Flexbox/Grid) e responsividade.
 * **JavaScript:** Lógica de interface e manipulação do DOM.
 
 ## ✨ Funcionalidades
