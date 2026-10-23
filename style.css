@@ -6,7 +6,7 @@ body {
     margin: 0;
     font-family: Inter, Segoe UI, Arial, sans-serif;
     background: #f4f7fb;
-    color: #1f2937;
+    color: #233f67;
 }
 
 .sidebar {
@@ -15,7 +15,7 @@ body {
     top: 0;
     bottom: 0;
     width: 250px;
-    background: #172554;
+    background: #253772;
     color: #fff;
     padding: 22px 14px;
     display: flex;
@@ -562,4 +562,179 @@ tr:last-child td {
     .toolbar select {
         width: 100%;
     }
+}
+
+
+/* Identidade visual EducaTech */
+.brand {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 8px 10px 26px;
+}
+.brand-logo {
+    display: block;
+    width: 205px;
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+}
+.brand-caption {
+    color: #bfdbfe;
+    font-size: 11px;
+}
+
+/* Tela de login demonstrativa */
+.login-screen {
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 22px;
+    background: linear-gradient(135deg, #eafaff 0%, #f7fbff 48%, #dff8f2 100%);
+}
+.login-screen.hidden { display: none; }
+.login-card {
+    width: min(100%, 430px);
+    padding: 34px;
+    background: #fff;
+    border: 1px solid #dbe7f2;
+    border-radius: 22px;
+    box-shadow: 0 20px 60px #15395c20;
+    display: flex;
+    flex-direction: column;
+}
+.login-logo {
+    display: block;
+    width: min(100%, 320px);
+    max-height: 110px;
+    object-fit: contain;
+    margin: 0 auto 18px;
+}
+.login-card h1 {
+    color: #17365b;
+    font-size: 27px;
+    text-align: center;
+    margin: 0 0 7px;
+}
+.login-card > p:not(.login-error) {
+    text-align: center;
+    color: #64748b;
+    font-size: 14px;
+    margin: 0 0 24px;
+}
+.login-card label {
+    color: #24364b;
+    font-weight: 600;
+    font-size: 13px;
+    margin: 0 0 7px;
+}
+.login-card input {
+    width: 100%;
+    padding: 12px 13px;
+    margin-bottom: 17px;
+    border: 1px solid #cbd5e1;
+    border-radius: 9px;
+    font: inherit;
+    outline: none;
+}
+.login-card input:focus {
+    border-color: #299f9a;
+    box-shadow: 0 0 0 3px #2bb7a51c;
+}
+.login-submit {
+    border: 0;
+    border-radius: 10px;
+    padding: 13px 16px;
+    color: #fff;
+    background: #17365b;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+}
+.login-submit:hover { background: #24517d; }
+.login-card small {
+    text-align: center;
+    color: #718096;
+    font-size: 11px;
+    margin-top: 16px;
+    line-height: 1.5;
+}
+.login-error { color: #b91c1c; font-size: 12px; margin: -8px 0 12px; min-height: 0; }
+.user-box { display: flex; align-items: center; gap: 9px; }
+.logout-button {
+    border: 0;
+    border-radius: 7px;
+    padding: 6px 9px;
+    background: #eaf2ff;
+    color: #1d4ed8;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+/* Quadro de avisos */
+.notice-intro {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+.notice-intro h2 { margin: 0 0 6px; color: #17365b; font-size: 22px; }
+.notice-intro p { margin: 0; color: #64748b; font-size: 14px; }
+.notice-count {
+    white-space: nowrap;
+    padding: 8px 12px;
+    border-radius: 99px;
+    background: #e2f7f2;
+    color: #147d75;
+    font-size: 12px;
+    font-weight: 700;
+}
+.notice-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+    align-items: start;
+}
+.notice-card {
+    overflow: hidden;
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 15px;
+    box-shadow: 0 5px 18px #17365b0d;
+    transition: transform .18s ease, box-shadow .18s ease;
+}
+.notice-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px #17365b16;
+}
+.notice-card img {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    background: #f0f8fb;
+}
+.notice-caption {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 14px 15px 16px;
+}
+.notice-caption strong { color: #17365b; font-size: 15px; }
+.notice-caption span { color: #64748b; font-size: 12px; line-height: 1.5; }
+
+@media (max-width: 1100px) {
+    .notice-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 700px) {
+    .brand-logo { width: 175px; }
+    .main { padding: 20px 16px; }
+    .topbar { align-items: flex-start; gap: 12px; flex-wrap: wrap; }
+    .notice-grid { grid-template-columns: 1fr; }
+    .notice-intro { align-items: flex-start; flex-direction: column; }
+    .login-card { padding: 26px 22px; }
 }
