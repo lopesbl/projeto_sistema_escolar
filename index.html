@@ -7,19 +7,32 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <!-- Tela de entrada demonstrativa: não substitui autenticação segura no servidor. -->
+  <div class="login-screen" id="loginScreen">
+    <form class="login-card" id="loginForm">
+      <img class="login-logo" src="img/logomarca.png" alt="EducaTech">
+      <h1>Bem-vindo(a)!</h1>
+      <p>Acesse o sistema de acompanhamento escolar</p>
+      <label for="loginEmail">E-mail</label>
+      <input id="loginEmail" name="email" type="email" placeholder="seuemail@escola.com" autocomplete="username" required>
+      <label for="loginPassword">Senha</label>
+      <input id="loginPassword" name="senha" type="password" placeholder="Digite sua senha" autocomplete="current-password" required>
+      <p class="login-error" id="loginError" aria-live="polite"></p>
+      <button class="login-submit" type="submit">Entrar no sistema</button>
+      <small>• Preencha e-mail e senha para entrar</small>
+    </form>
+  </div>
   <!-- MENU LATERAL: identidade visual e botões usados para trocar de seção. -->
   <aside class="sidebar">
     <div class="brand">
-      <div class="brand-icon">🎓</div>
-      <div>
-        <strong>EducaTech</strong>
-        <span>Acompanhamento Escolar</span>
-      </div>
+      <img class="brand-logo" src="img/logomarca.png" alt="EducaTech">
+      <span class="brand-caption">Acompanhamento Escolar</span>
     </div>
 
     <!-- Navegação: cada data-section aponta para o id da seção que será exibida. -->
     <nav>
       <button class="nav-item active" data-section="inicio">🏠 <span>Início</span></button>
+      <button class="nav-item" data-section="avisos">📢 <span>Quadro de avisos</span></button>
       <button class="nav-item" data-section="alunos">👨‍🎓 <span>Alunos</span></button>
       <button class="nav-item" data-section="materias">📚 <span>Matérias</span></button>
       <button class="nav-item" data-section="frequencia">📅 <span>Frequência</span></button>
@@ -29,7 +42,7 @@
     </nav>
 
     <div class="sidebar-footer">
-      <span>2026 • EducaTech</span>
+      <span>Contato: contato@educatech.com</span>
     </div>
   </aside>
 
@@ -41,7 +54,7 @@
         <h1 id="page-title">Dashboard</h1>
         <p id="page-subtitle">Visão geral do acompanhamento escolar</p>
       </div>
-      <div class="user-box">👤 Administrador</div>
+      <div class="user-box">👤 <span id="loggedUser">Administrador</span> <button type="button" id="logoutButton" class="logout-button">Sair</button></div>
     </header>
 
     <!-- INÍCIO / DASHBOARD: cartões de indicadores, médias, atividades e alunos em atenção. -->
@@ -150,6 +163,31 @@
       <div class="toolbar"><select id="alunoDesempenho" onchange="renderDesempenho()"></select></div>
       <div id="desempenhoContent"></div>
     </section>
+
+    <!-- QUADRO DE AVISOS: cartazes enviados para a página inicial do sistema. -->
+    <section id="avisos" class="section">
+      <div class="notice-intro">
+        <div>
+          <h2>Comunicados da escola</h2>
+          <p>Confira os avisos importantes, eventos e datas de avaliações.</p>
+        </div>
+        <span class="notice-count">3 comunicados</span>
+      </div>
+      <div class="notice-grid">
+        <article class="notice-card">
+          <img src="img/avisos-importantes.jpg" alt="Cartaz de avisos importantes: reunião de pais e mestres e feriados de novembro">
+          <div class="notice-caption"><strong>Avisos importantes</strong><span>Reunião de pais e mestres e feriados</span></div>
+        </article>
+        <article class="notice-card">
+          <img src="img/eventos-atividades.jpg" alt="Cartaz de eventos e atividades escolares de novembro">
+          <div class="notice-caption"><strong>Eventos e atividades</strong><span>Feira de Ciências, torneio e passeio escolar</span></div>
+        </article>
+        <article class="notice-card">
+          <img src="img/calendario-provas.jpg" alt="Cartaz com o calendário de provas de Matemática, Português e História">
+          <div class="notice-caption"><strong>Calendário de provas</strong><span>Datas das avaliações de novembro</span></div>
+        </article>
+      </div>
+    </section>
   </main>
 
   <!-- Modal aluno -->
@@ -213,8 +251,6 @@
     </div>
   </div>
 
-  <!-- Carrega a lógica JavaScript depois da estrutura HTML. -->
   <script src="script.js"></script>
 </body>
 </html>
-
