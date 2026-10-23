@@ -69,6 +69,7 @@ const state = {
 // associa o id de cada seção ao título e subtítulo exibidos.
 const titles = {
   inicio:["Dashboard","Visão geral do acompanhamento escolar"],
+  avisos:["Quadro de avisos","Comunicados, eventos e calendário escolar"],
   alunos:["Alunos","Cadastro e acompanhamento dos estudantes"],
   materias:["Matérias","Disciplinas oferecidas pela escola"],
   frequencia:["Frequência","Controle de presença e faltas"],
@@ -219,3 +220,26 @@ document.getElementById("atividadeForm").addEventListener("submit",e=>{
 });
 
 refresh();
+
+
+// Login apenas demonstrativo no navegador: não valida usuários em um servidor.
+const loginScreen = document.getElementById("loginScreen");
+const loginForm = document.getElementById("loginForm");
+loginForm.addEventListener("submit", event => {
+  event.preventDefault();
+  const email = document.getElementById("loginEmail").value.trim();
+  const senha = document.getElementById("loginPassword").value;
+  if (!email || !senha) {
+    document.getElementById("loginError").textContent = "Preencha o e-mail e a senha.";
+    return;
+  }
+  document.getElementById("loggedUser").textContent = email.split("@")[0];
+  loginScreen.classList.add("hidden");
+});
+document.getElementById("logoutButton").addEventListener("click", () => {
+  loginForm.reset();
+  document.getElementById("loginError").textContent = "";
+  loginScreen.classList.remove("hidden");
+  document.getElementById("loginEmail").focus();
+});
+
